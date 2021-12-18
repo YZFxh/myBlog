@@ -1,6 +1,7 @@
 package com.yzf.myblog.user.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.yzf.myblog.common.Result;
 import com.yzf.myblog.user.entity.MUser;
 import com.yzf.myblog.user.service.MUserService;
 //import org.springframework.data.domain.Page;
@@ -17,13 +18,18 @@ import javax.annotation.Resource;
  * @since 2021-11-07 14:38:42
  */
 @RestController
-@RequestMapping("mUser")
+@RequestMapping("/mUser")
 public class MUserController {
     /**
      * 服务对象
      */
     @Resource
     private MUserService mUserService;
+    @GetMapping("/index")
+    public Result index(){
+        MUser user = mUserService.queryById(1L);
+        return Result.success(user);
+    }
 
     /**
      * 分页查询

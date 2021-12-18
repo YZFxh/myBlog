@@ -1,10 +1,13 @@
 package com.yzf.myblog.blog.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yzf.myblog.blog.entity.MBlog;
 import com.yzf.myblog.blog.service.MBlogService;
 //import org.springframework.data.domain.Page;
 //import org.springframework.data.domain.PageRequest;
+import com.yzf.myblog.common.Result;
+import com.yzf.myblog.user.entity.MUser;
+import com.yzf.myblog.user.service.MUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +20,7 @@ import javax.annotation.Resource;
  * @since 2021-11-07 14:36:46
  */
 @RestController
-@RequestMapping("mBlog")
+@RequestMapping("/mBlog")
 public class MBlogController {
     /**
      * 服务对象
@@ -43,7 +46,7 @@ public class MBlogController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("{id}")
+    @GetMapping("/queryById")
     public ResponseEntity<MBlog> queryById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(this.mBlogService.queryById(id));
     }
@@ -54,7 +57,7 @@ public class MBlogController {
      * @param mBlog 实体
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<MBlog> add(MBlog mBlog) {
         return ResponseEntity.ok(this.mBlogService.insert(mBlog));
     }
@@ -65,7 +68,7 @@ public class MBlogController {
      * @param mBlog 实体
      * @return 编辑结果
      */
-    @PutMapping
+    @PutMapping("/edit")
     public ResponseEntity<MBlog> edit(MBlog mBlog) {
         return ResponseEntity.ok(this.mBlogService.update(mBlog));
     }
